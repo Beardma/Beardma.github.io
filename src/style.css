@@ -171,6 +171,10 @@ pre {
 }
 
 .site-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
   padding: 24px 0;
   border-top: 1px solid var(--border);
   font-size: 15px;

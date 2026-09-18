@@ -98,6 +98,16 @@ function parseFrontmatter(raw: string): {
     };
 }
 
+/*
+ * Populated as each .md is transformed, so the feed plugin can reuse the
+ * already-compiled posts instead of parsing the directory a second time.
+ */
+const compiled = new Map<string, PostData>();
+
+export function collectedPosts(): PostData[] {
+    return [...compiled.values()];
+}
+
 export function markdown(): Plugin {
     let highlighter: Highlighter | undefined;
 
@@ -146,6 +156,8 @@ export function markdown(): Plugin {
                 tags: (data.tags as string[]) ?? [],
                 title: (data.title as string) || slug,
             };
+
+            compiled.set(post.slug, post);
 
             return {
                 code: `export default ${JSON.stringify(post)};`,
