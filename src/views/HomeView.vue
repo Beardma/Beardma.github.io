@@ -1,6 +1,5 @@
 <template>
     <section class="intro">
-        <h1>Marshall Beard</h1>
         <p>Notes on software, data, and whatever I happen to be building.</p>
     </section>
 
