@@ -1,12 +1,17 @@
-
 <template>
-  <article v-if="post">
-    <h1>{{ post.title }}</h1>
-    <time :datetime="post.date">{{ post.date }}</time>
-    <!-- safe: content is your own markdown, compiled at build time -->
-    <div v-html="post.html" />
-  </article>
-  <p v-else>Post not found.</p>
+    <article v-if="post" class="post">
+        <h1>{{ post.title }}</h1>
+        <time :datetime="post.date">{{ post.date }}</time>
+
+        <!-- safe: content is your own markdown, compiled at build time -->
+        <div class="prose" v-html="post.html" />
+    </article>
+
+    <p v-else>Post not found.</p>
+
+    <p class="back">
+        <RouterLink to="/">&larr; All posts</RouterLink>
+    </p>
 </template>
 
 <script setup lang="ts">
@@ -18,12 +23,12 @@
         getPost,
     } from '../posts';
 
+    const props = defineProps<{ slug: string }>();
     const post = computed(() => {
         return getPost(props.slug);
     });
-    const props = defineProps<{ slug: string }>()
 
     watchEffect(() => {
-        return document.title = post.value ? `${post.value.title} — Marshall Beard` : 'Not found';
-    })
+        document.title = post.value ? `${post.value.title} — Marshall Beard` : 'Not found';
+    });
 </script>

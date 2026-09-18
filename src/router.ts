@@ -15,6 +15,13 @@ export const router = createRouter({
         },
         { 
             component: () => {
+                return import('./views/AboutView.vue') 
+            },
+            name: 'about', 
+            path: '/about', 
+        },
+        { 
+            component: () => {
                 return import('./views/PostView.vue')
             }, 
             name: 'post', 

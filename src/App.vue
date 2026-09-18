@@ -1,7 +1,22 @@
-<script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
-</script>
-
 <template>
-  <HelloWorld />
+    <header class="site-header">
+        <RouterLink class="site-title" to="/">Marshall Beard</RouterLink>
+
+        <nav class="site-nav">
+            <RouterLink to="/">Posts</RouterLink>
+            <RouterLink to="/about">About</RouterLink>
+        </nav>
+    </header>
+
+    <main class="site-main">
+        <RouterView />
+    </main>
+
+    <footer class="site-footer">
+        <p>&copy; {{ year }} Marshall Beard</p>
+    </footer>
 </template>
+
+<script setup lang="ts">
+    const year = new Date().getFullYear();
+</script>
