@@ -1,9 +1,6 @@
 /*
- * Single source of truth for turning a post filename into its URL slug.
- * Used by the markdown plugin (to stamp the slug onto each post) and by
- * vite.config.ts (to tell vite-ssg which /posts/* routes to pre-render).
- *
- *   src/posts/2026-09-17-hello-world.md  ->  hello-world
+ * Shared so the markdown plugin and vite.config.ts cannot drift apart on what
+ * a post's URL is.
  */
 export function slugFromPath(filePath: string): string {
     return filePath

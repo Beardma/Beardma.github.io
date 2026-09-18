@@ -18,12 +18,26 @@
 </template>
 
 <script setup lang="ts">
-    import { 
+    import {
         useHead,
     } from '@unhead/vue';
-    import { 
+    import {
         posts,
     } from '../posts';
+
+    function formatDate(date: string): string {
+        if (!date) {
+            return '';
+        }
+
+        // Parsed as UTC, or the date displays a day early west of Greenwich.
+        return new Date(`${date}T00:00:00Z`).toLocaleDateString('en-US', {
+            day: 'numeric',
+            month: 'long',
+            timeZone: 'UTC',
+            year: 'numeric',
+        });
+    }
 
     useHead({
         meta: [
@@ -34,18 +48,4 @@
         ],
         title: 'Marshall Beard',
     });
-
-    function formatDate(date: string): string {
-        if (!date) {
-            return '';
-        }
-
-        // treat the frontmatter date as UTC so it doesn't shift a day in local time
-        return new Date(`${date}T00:00:00Z`).toLocaleDateString('en-US', {
-            day: 'numeric',
-            month: 'long',
-            timeZone: 'UTC',
-            year: 'numeric',
-        });
-    }
 </script>

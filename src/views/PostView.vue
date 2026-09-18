@@ -3,7 +3,7 @@
         <h1>{{ post.title }}</h1>
         <time :datetime="post.date">{{ post.date }}</time>
 
-        <!-- safe: content is your own markdown, compiled at build time -->
+        <!-- Safe: the markdown is ours, compiled at build time. -->
         <div class="prose" v-html="post.html" />
     </article>
 
@@ -15,13 +15,13 @@
 </template>
 
 <script setup lang="ts">
-    import { 
+    import {
         useHead,
     } from '@unhead/vue';
-    import { 
-        computed, 
+    import {
+        computed,
     } from 'vue';
-    import { 
+    import {
         getPost,
     } from '../posts';
 
@@ -30,10 +30,7 @@
         return getPost(props.slug);
     });
 
-    /*
-     * useHead (not document.title) so the title and description are baked
-     * into the pre-rendered HTML where crawlers can see them.
-     */
+    // useHead rather than document.title, so crawlers see it in the static HTML.
     useHead({
         meta: [
             {
@@ -44,7 +41,11 @@
             },
         ],
         title: computed(() => {
-            return post.value ? `${post.value.title} — Marshall Beard` : 'Not found';
+            if (!post.value) {
+                return 'Not found';
+            }
+
+            return `${post.value.title} — Marshall Beard`;
         }),
     });
 </script>

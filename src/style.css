@@ -1,291 +1,287 @@
 :root {
-  --text: #6b6375;
-  --text-h: #08060d;
-  --bg: #fff;
-  --border: #e5e4e7;
-  --code-bg: #f4f3ec;
-  --accent: #aa3bff;
-  --accent-bg: rgba(170, 59, 255, 0.1);
-  --accent-border: rgba(170, 59, 255, 0.5);
-  --shadow:
-    rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
+    --text: #6b6375;
+    --text-h: #08060d;
+    --bg: #fff;
+    --border: #e5e4e7;
+    --code-bg: #f4f3ec;
+    --accent: #aa3bff;
+    --accent-bg: rgba(170, 59, 255, 0.1);
+    --accent-border: rgba(170, 59, 255, 0.5);
+    --shadow:
+        rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
 
-  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --mono: ui-monospace, Consolas, monospace;
+    --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
+    --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
+    --mono: ui-monospace, Consolas, monospace;
 
-  font: 18px/155% var(--sans);
-  letter-spacing: 0.18px;
-  color-scheme: light dark;
-  color: var(--text);
-  background: var(--bg);
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    font: 18px/155% var(--sans);
+    letter-spacing: 0.18px;
+    color-scheme: light dark;
+    color: var(--text);
+    background: var(--bg);
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 
-  @media (max-width: 1024px) {
-    font-size: 16px;
-  }
+    @media (max-width: 1024px) {
+        font-size: 16px;
+    }
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
-    --text: #9ca3af;
-    --text-h: #f3f4f6;
-    --bg: #16171d;
-    --border: #2e303a;
-    --code-bg: #1f2028;
-    --accent: #c084fc;
-    --accent-bg: rgba(192, 132, 252, 0.15);
-    --accent-border: rgba(192, 132, 252, 0.5);
-    --shadow:
-      rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
-  }
+    :root {
+        --text: #9ca3af;
+        --text-h: #f3f4f6;
+        --bg: #16171d;
+        --border: #2e303a;
+        --code-bg: #1f2028;
+        --accent: #c084fc;
+        --accent-bg: rgba(192, 132, 252, 0.15);
+        --accent-border: rgba(192, 132, 252, 0.5);
+        --shadow:
+            rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
+    }
 }
 
 body {
-  margin: 0;
+    margin: 0;
 }
 
 a {
-  color: var(--accent);
-  text-decoration-thickness: 1px;
-  text-underline-offset: 3px;
+    color: var(--accent);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
 }
 
 h1,
 h2,
 h3 {
-  font-family: var(--heading);
-  font-weight: 500;
-  color: var(--text-h);
-  letter-spacing: -0.02em;
+    font-family: var(--heading);
+    font-weight: 500;
+    color: var(--text-h);
+    letter-spacing: -0.02em;
 }
 
 h1 {
-  font-size: 40px;
-  line-height: 115%;
-  margin: 0 0 12px;
+    font-size: 40px;
+    line-height: 115%;
+    margin: 0 0 12px;
 
-  @media (max-width: 1024px) {
-    font-size: 30px;
-  }
+    @media (max-width: 1024px) {
+        font-size: 30px;
+    }
 }
 
 h2 {
-  font-size: 26px;
-  margin: 40px 0 8px;
+    font-size: 26px;
+    margin: 40px 0 8px;
 }
 
 h3 {
-  font-size: 20px;
-  margin: 32px 0 8px;
+    font-size: 20px;
+    margin: 32px 0 8px;
 }
 
 p {
-  margin: 0;
+    margin: 0;
 }
 
 time {
-  font-size: 15px;
-  color: var(--text);
-  opacity: 0.8;
+    font-size: 15px;
+    color: var(--text);
+    opacity: 0.8;
 }
 
 code {
-  font-family: var(--mono);
-  font-size: 0.88em;
-  border-radius: 4px;
-  padding: 3px 6px;
-  color: var(--text-h);
-  background: var(--code-bg);
+    font-family: var(--mono);
+    font-size: 0.88em;
+    border-radius: 4px;
+    padding: 3px 6px;
+    color: var(--text-h);
+    background: var(--code-bg);
 }
 
 pre {
-  background: var(--code-bg);
-  border-radius: 8px;
-  padding: 16px;
-  overflow-x: auto;
+    background: var(--code-bg);
+    border-radius: 8px;
+    padding: 16px;
+    overflow-x: auto;
 
-  code {
-    padding: 0;
-    background: none;
-  }
+    code {
+        padding: 0;
+        background: none;
+    }
 }
 
 /* ---- layout shell ---- */
 
 #app {
-  width: 100%;
-  max-width: 720px;
-  margin: 0 auto;
-  padding: 0 20px;
-  box-sizing: border-box;
-  min-height: 100svh;
-  display: flex;
-  flex-direction: column;
+    width: 100%;
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 20px;
+    box-sizing: border-box;
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
 }
 
 .site-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  flex-wrap: wrap;
-  padding: 28px 0;
-  border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+    padding: 28px 0;
+    border-bottom: 1px solid var(--border);
 }
 
 .site-title {
-  font-family: var(--heading);
-  font-size: 19px;
-  font-weight: 500;
-  color: var(--text-h);
-  text-decoration: none;
+    font-family: var(--heading);
+    font-size: 19px;
+    font-weight: 500;
+    color: var(--text-h);
+    text-decoration: none;
 }
 
 .site-nav {
-  display: flex;
-  gap: 20px;
+    display: flex;
+    gap: 20px;
 
-  a {
-    font-size: 16px;
-    color: var(--text);
-    text-decoration: none;
+    a {
+        font-size: 16px;
+        color: var(--text);
+        text-decoration: none;
 
-    &:hover {
-      color: var(--accent);
+        &:hover {
+            color: var(--accent);
+        }
     }
-  }
 
-  /* vue-router adds this class to the link matching the current route */
-  a.router-link-exact-active {
-    color: var(--accent);
-  }
+    a.router-link-exact-active {
+        color: var(--accent);
+    }
 }
 
 .site-main {
-  flex-grow: 1;
-  padding: 40px 0 64px;
+    flex-grow: 1;
+    padding: 40px 0 64px;
 }
 
 .site-footer {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  padding: 24px 0;
-  border-top: 1px solid var(--border);
-  font-size: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 24px 0;
+    border-top: 1px solid var(--border);
+    font-size: 15px;
 }
 
 /* ---- home ---- */
 
 .intro {
-  margin-bottom: 48px;
+    margin-bottom: 48px;
 }
 
 .post-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
-
-  li {
+    list-style: none;
+    padding: 0;
+    margin: 0;
     display: flex;
     flex-direction: column;
-    gap: 6px;
-  }
+    gap: 32px;
+
+    li {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+    }
 }
 
 .post-title {
-  font-family: var(--heading);
-  font-size: 22px;
-  color: var(--text-h);
-  text-decoration: none;
-  width: fit-content;
+    font-family: var(--heading);
+    font-size: 22px;
+    color: var(--text-h);
+    text-decoration: none;
+    width: fit-content;
 
-  &:hover {
-    color: var(--accent);
-  }
+    &:hover {
+        color: var(--accent);
+    }
 }
 
 .empty {
-  opacity: 0.7;
+    opacity: 0.7;
 }
 
 /* ---- single post ---- */
 
 .post {
-  h1 {
-    margin-bottom: 8px;
-  }
-}
-
-.prose {
-  margin-top: 32px;
-
-  p,
-  ul,
-  ol,
-  pre,
-  blockquote {
-    margin: 0 0 20px;
-  }
-
-  h2:first-child,
-  h3:first-child {
-    margin-top: 0;
-  }
-
-  img {
-    max-width: 100%;
-    border-radius: 8px;
-  }
-
-  blockquote {
-    margin-inline: 0;
-    padding-left: 16px;
-    border-left: 3px solid var(--border);
-  }
-}
-
-/* ---- syntax highlighting (shiki, compiled at build time) ---- */
-
-.prose {
-  .shiki,
-  .shiki-plain {
-    /* shiki inlines its own theme background; use the site token instead */
-    background: var(--code-bg) !important;
-    border-radius: 8px;
-    padding: 16px;
-    overflow-x: auto;
-    font-size: 15px;
-    line-height: 150%;
-
-    code {
-      padding: 0;
-      background: none;
-      font-size: inherit;
+    h1 {
+        margin-bottom: 8px;
     }
-  }
 }
 
-/*
- * shiki emits light colors inline and dark ones as --shiki-dark custom
- * properties, so dark mode is a single swap with no extra payload.
- */
+.prose {
+    margin-top: 32px;
+
+    p,
+    ul,
+    ol,
+    pre,
+    blockquote {
+        margin: 0 0 20px;
+    }
+
+    h2:first-child,
+    h3:first-child {
+        margin-top: 0;
+    }
+
+    img {
+        max-width: 100%;
+        border-radius: 8px;
+    }
+
+    blockquote {
+        margin-inline: 0;
+        padding-left: 16px;
+        border-left: 3px solid var(--border);
+    }
+}
+
+/* ---- syntax highlighting ---- */
+
+.prose {
+    .shiki,
+    .shiki-plain {
+        /* Overrides the theme background shiki inlines, to match the site. */
+        background: var(--code-bg) !important;
+        border-radius: 8px;
+        padding: 16px;
+        overflow-x: auto;
+        font-size: 15px;
+        line-height: 150%;
+
+        code {
+            padding: 0;
+            background: none;
+            font-size: inherit;
+        }
+    }
+}
+
+/* shiki emits dark colors as custom properties, so this is the whole swap. */
 @media (prefers-color-scheme: dark) {
-  .prose .shiki,
-  .prose .shiki span {
-    color: var(--shiki-dark) !important;
-  }
+    .prose .shiki,
+    .prose .shiki span {
+        color: var(--shiki-dark) !important;
+    }
 }
 
 .back {
-  margin-top: 48px;
-  font-size: 16px;
+    margin-top: 48px;
+    font-size: 16px;
 }

@@ -1,7 +1,7 @@
-import type { 
+import type {
     Plugin,
 } from 'vite';
-import { 
+import {
     collectedPosts,
 } from './markdown.ts';
 
@@ -12,6 +12,11 @@ export interface FeedOptions {
     title: string;
 }
 
+// A CDATA section ends at the first ']]>', so a literal one has to be split.
+function cdata(value: string): string {
+    return `<![CDATA[${value.replace(/]]>/g, ']]]]><![CDATA[>')}]]>`;
+}
+
 function escapeXml(value: string): string {
     return value
         .replace(/&/g, '&amp;')
@@ -20,29 +25,13 @@ function escapeXml(value: string): string {
         .replace(/"/g, '&quot;');
 }
 
-/*
- * A CDATA section ends at the first ']]>', so any literal occurrence in the
- * post HTML has to be split across two sections.
- */
-function cdata(value: string): string {
-    return `<![CDATA[${value.replace(/]]>/g, ']]]]><![CDATA[>')}]]>`;
-}
-
-function toRfc822(date: string): string {
-    const parsed = new Date(`${date}T00:00:00Z`);
-
-    return Number.isNaN(parsed.getTime())
-        ? new Date().toUTCString()
-        : parsed.toUTCString();
-}
-
 export function feed(options: FeedOptions): Plugin {
     const fileName = options.fileName ?? 'feed.xml';
     const site = options.siteUrl.replace(/\/$/, '');
+
     let isSsrBuild = false;
 
     return {
-        name: 'blog-feed',
         apply: 'build',
 
         configResolved(config) {
@@ -50,7 +39,7 @@ export function feed(options: FeedOptions): Plugin {
         },
 
         generateBundle() {
-            // vite-ssg builds twice; the feed only belongs in the client output
+            // vite-ssg builds twice; the feed belongs only in the client output.
             if (isSsrBuild) {
                 return;
             }
@@ -58,7 +47,6 @@ export function feed(options: FeedOptions): Plugin {
             const posts = collectedPosts().sort((a, b) => {
                 return b.date.localeCompare(a.date);
             });
-
             const items = posts.map((post) => {
                 const url = `${site}/posts/${post.slug}`;
 
@@ -73,7 +61,6 @@ export function feed(options: FeedOptions): Plugin {
                     '    </item>',
                 ].join('\n');
             });
-
             const xml = [
                 '<?xml version="1.0" encoding="UTF-8"?>',
                 '<rss version="2.0"',
@@ -98,5 +85,17 @@ export function feed(options: FeedOptions): Plugin {
                 type: 'asset',
             });
         },
+
+        name: 'blog-feed',
     };
+}
+
+function toRfc822(date: string): string {
+    const parsed = new Date(`${date}T00:00:00Z`);
+
+    if (Number.isNaN(parsed.getTime())) {
+        return new Date().toUTCString();
+    }
+
+    return parsed.toUTCString();
 }

@@ -7,7 +7,7 @@
 </template>
 
 <script setup lang="ts">
-    import { 
+    import {
         useHead,
     } from '@unhead/vue';
 

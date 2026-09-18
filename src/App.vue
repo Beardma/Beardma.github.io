@@ -15,7 +15,7 @@
     <footer class="site-footer">
         <p>&copy; {{ year }} Marshall Beard</p>
 
-        <!-- a static file, not a route, so a plain anchor rather than RouterLink -->
+        <!-- A static file, not a route. -->
         <a href="/feed.xml">RSS</a>
     </footer>
 </template>
