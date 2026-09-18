@@ -5,6 +5,7 @@
         <nav class="site-nav">
             <RouterLink to="/">Posts</RouterLink>
             <RouterLink to="/about">About</RouterLink>
+            <ThemeToggle />
         </nav>
     </header>
 
@@ -21,5 +22,7 @@
 </template>
 
 <script setup lang="ts">
+    import ThemeToggle from './components/ThemeToggle.vue';
+
     const year = new Date().getFullYear();
 </script>

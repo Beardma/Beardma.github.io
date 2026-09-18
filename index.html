@@ -6,6 +6,20 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="alternate" type="application/rss+xml" title="Marshall Beard" href="/feed.xml" />
         <title>Marshall Beard</title>
+
+        <!-- Runs before first paint, or a stored choice would flash the other theme. -->
+        <script>
+            try {
+                const theme = localStorage.getItem('theme');
+
+                if (theme) {
+                    document.documentElement.dataset.theme = theme;
+                }
+            }
+            catch {
+                // Private browsing blocks reads; the system preference still applies.
+            }
+        </script>
     </head>
     <body>
         <div id="app"></div>

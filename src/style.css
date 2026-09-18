@@ -1,18 +1,14 @@
 :root {
-    --text: #6b6375;
-    --text-h: #08060d;
-    --bg: #fff;
-    --border: #e5e4e7;
-    --code-bg: #f4f3ec;
-    --accent: #aa3bff;
-    --accent-bg: rgba(170, 59, 255, 0.1);
-    --accent-border: rgba(170, 59, 255, 0.5);
-    --shadow:
-        rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
+    --accent: light-dark(#aa3bff, #c084fc);
+    --bg: light-dark(#fff, #16171d);
+    --border: light-dark(#e5e4e7, #2e303a);
+    --code-bg: light-dark(#f4f3ec, #1f2028);
+    --text: light-dark(#6b6375, #9ca3af);
+    --text-h: light-dark(#08060d, #f3f4f6);
 
-    --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
     --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
     --mono: ui-monospace, Consolas, monospace;
+    --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
 
     font: 18px/155% var(--sans);
     letter-spacing: 0.18px;
@@ -29,19 +25,13 @@
     }
 }
 
-@media (prefers-color-scheme: dark) {
-    :root {
-        --text: #9ca3af;
-        --text-h: #f3f4f6;
-        --bg: #16171d;
-        --border: #2e303a;
-        --code-bg: #1f2028;
-        --accent: #c084fc;
-        --accent-bg: rgba(192, 132, 252, 0.15);
-        --accent-border: rgba(192, 132, 252, 0.5);
-        --shadow:
-            rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
-    }
+/* Every themed value resolves through color-scheme, so the toggle only sets this. */
+:root[data-theme='dark'] {
+    color-scheme: dark;
+}
+
+:root[data-theme='light'] {
+    color-scheme: light;
 }
 
 body {
@@ -164,6 +154,38 @@ pre {
     }
 }
 
+.theme-toggle {
+    background: none;
+    border: none;
+    color: var(--text);
+    cursor: pointer;
+    font: inherit;
+    font-size: 16px;
+    padding: 0;
+
+    &:hover {
+        color: var(--accent);
+    }
+}
+
+/*
+ * Labelled from CSS rather than component state: the resolved theme is only
+ * known to CSS during pre-render, and reading it in JS would flash on load.
+ */
+.theme-toggle::after {
+    content: 'Dark';
+}
+
+@media (prefers-color-scheme: dark) {
+    :root:not([data-theme='light']) .theme-toggle::after {
+        content: 'Light';
+    }
+}
+
+:root[data-theme='dark'] .theme-toggle::after {
+    content: 'Light';
+}
+
 .site-main {
     flex-grow: 1;
     padding: 40px 0 64px;
@@ -257,8 +279,7 @@ pre {
 .prose {
     .shiki,
     .shiki-plain {
-        /* Overrides the theme background shiki inlines, to match the site. */
-        background: var(--code-bg) !important;
+        background: var(--code-bg);
         border-radius: 8px;
         padding: 16px;
         overflow-x: auto;
@@ -273,12 +294,9 @@ pre {
     }
 }
 
-/* shiki emits dark colors as custom properties, so this is the whole swap. */
-@media (prefers-color-scheme: dark) {
-    .prose .shiki,
-    .prose .shiki span {
-        color: var(--shiki-dark) !important;
-    }
+.prose .shiki,
+.prose .shiki span {
+    color: light-dark(var(--shiki-light), var(--shiki-dark));
 }
 
 .back {

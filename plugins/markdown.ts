@@ -75,7 +75,9 @@ export function markdown(): Plugin {
                             return `<pre class="shiki-plain"><code>${escapeHtml(text)}</code></pre>`;
                         }
 
+                        // Emits both palettes as custom properties for light-dark() in CSS.
                         return highlighter!.codeToHtml(text, {
+                            defaultColor: false,
                             lang,
                             themes: THEMES,
                         });
