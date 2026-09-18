@@ -1,7 +1,7 @@
 ---
 title: My First Post!
 date: 2026-09-17
-description: Test post.
+description: I suppose I should write a little more about me
 tags: [meta, vue]
 ---
 
