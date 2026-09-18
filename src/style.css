@@ -249,6 +249,38 @@ pre {
   }
 }
 
+/* ---- syntax highlighting (shiki, compiled at build time) ---- */
+
+.prose {
+  .shiki,
+  .shiki-plain {
+    /* shiki inlines its own theme background; use the site token instead */
+    background: var(--code-bg) !important;
+    border-radius: 8px;
+    padding: 16px;
+    overflow-x: auto;
+    font-size: 15px;
+    line-height: 150%;
+
+    code {
+      padding: 0;
+      background: none;
+      font-size: inherit;
+    }
+  }
+}
+
+/*
+ * shiki emits light colors inline and dark ones as --shiki-dark custom
+ * properties, so dark mode is a single swap with no extra payload.
+ */
+@media (prefers-color-scheme: dark) {
+  .prose .shiki,
+  .prose .shiki span {
+    color: var(--shiki-dark) !important;
+  }
+}
+
 .back {
   margin-top: 48px;
   font-size: 16px;
