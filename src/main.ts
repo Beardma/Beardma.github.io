@@ -1,12 +1,19 @@
 import { 
-    createApp,
-} from 'vue'
+    ViteSSG,
+} from 'vite-ssg'
 import './style.css'
 import {
-    router,
+    routes,
 } from './router';
 import App from './App.vue'
 
-createApp(App)
-    .use(router)
-    .mount('#app')
+// named export `createApp` is the entry point vite-ssg looks for
+export const createApp = ViteSSG(
+    App,
+    {
+        routes,
+        scrollBehavior: () => {
+            return ({ top: 0 });
+        },
+    },
+);

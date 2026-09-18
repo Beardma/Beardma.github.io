@@ -8,6 +8,9 @@ import {
 import type { 
     Plugin,
 } from 'vite';
+import { 
+    slugFromPath,
+} from './slug.ts';
 
 // grammars loaded at build time only — none of this ships to the browser
 const LANGS = [
@@ -38,6 +41,7 @@ export interface PostData {
     date: string;
     description: string;
     html: string;
+    slug: string;
     tags: string[];
     title: string;
 }
@@ -126,17 +130,21 @@ export function markdown(): Plugin {
         },
 
         transform(code, id) {
-            if (!id.split('?')[0].endsWith('.md')) {
+            const path = id.split('?')[0];
+
+            if (!path.endsWith('.md')) {
                 return null;
             }
 
             const { body, data } = parseFrontmatter(code);
+            const slug = slugFromPath(path);
             const post: PostData = {
                 date: (data.date as string) ?? '',
                 description: (data.description as string) ?? '',
                 html: marked.parse(body, { async: false }) as string,
+                slug,
                 tags: (data.tags as string[]) ?? [],
-                title: (data.title as string) ?? '',
+                title: (data.title as string) || slug,
             };
 
             return {

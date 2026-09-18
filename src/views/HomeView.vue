@@ -19,8 +19,21 @@
 
 <script setup lang="ts">
     import { 
+        useHead,
+    } from '@unhead/vue';
+    import { 
         posts,
     } from '../posts';
+
+    useHead({
+        meta: [
+            {
+                content: 'Notes on software, data, and whatever I happen to be building.',
+                name: 'description',
+            },
+        ],
+        title: 'Marshall Beard',
+    });
 
     function formatDate(date: string): string {
         if (!date) {

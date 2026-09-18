@@ -16,8 +16,10 @@
 
 <script setup lang="ts">
     import { 
+        useHead,
+    } from '@unhead/vue';
+    import { 
         computed, 
-        watchEffect,
     } from 'vue';
     import { 
         getPost,
@@ -28,7 +30,21 @@
         return getPost(props.slug);
     });
 
-    watchEffect(() => {
-        document.title = post.value ? `${post.value.title} — Marshall Beard` : 'Not found';
+    /*
+     * useHead (not document.title) so the title and description are baked
+     * into the pre-rendered HTML where crawlers can see them.
+     */
+    useHead({
+        meta: [
+            {
+                content: computed(() => {
+                    return post.value?.description ?? '';
+                }),
+                name: 'description',
+            },
+        ],
+        title: computed(() => {
+            return post.value ? `${post.value.title} — Marshall Beard` : 'Not found';
+        }),
     });
 </script>

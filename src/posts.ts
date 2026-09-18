@@ -7,24 +7,17 @@ export interface Post {
     title: string;
 };
 
-// each .md is compiled to HTML at build time by plugins/markdown.ts,
-// so no markdown parser or syntax highlighter ships to the browser
+/*
+ * Each .md is parsed, highlighted and compiled to HTML at build time by
+ * plugins/markdown.ts, so no markdown parser or syntax highlighter ships
+ * to the browser.
+ */
 const files = import.meta.glob('./posts/*.md', {
     eager: true,
     import: 'default',
-}) as Record<string, Omit<Post, 'slug'>>;
+}) as Record<string, Post>;
 
-export const posts: Post[] = Object.entries(files)
-    .map(([path, post]) => {
-        // ./posts/2026-09-17-hello-world.md -> hello-world
-        const slug = path.replace(/^.*\/(?:\d{4}-\d{2}-\d{2}-)?/, '').replace(/\.md$/, '');
-
-        return {
-            ...post,
-            slug,
-            title: post.title || slug,
-        };
-    })
+export const posts: Post[] = Object.values(files)
     .sort((a, b) => {
         return b.date.localeCompare(a.date);
     });

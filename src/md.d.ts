@@ -3,6 +3,7 @@ declare module '*.md' {
         date: string;
         description: string;
         html: string;
+        slug: string;
         tags: string[];
         title: string;
     };

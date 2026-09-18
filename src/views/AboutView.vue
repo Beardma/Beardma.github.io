@@ -10,10 +10,10 @@
 
 <script setup lang="ts">
     import { 
-        onMounted,
-    } from 'vue';
+        useHead,
+    } from '@unhead/vue';
 
-    onMounted(() => {
-        document.title = 'About — Marshall Beard';
+    useHead({
+        title: 'About — Marshall Beard',
     });
 </script>
